@@ -1,0 +1,67 @@
+body {
+    font-size: 0;
+    padding: 0;
+}
+
+button {
+    margin: 10px auto;
+    width: 100px;
+    display: block;
+}
+div {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+#keyboard {
+    margin: 0 auto;
+    display: block;
+    width: 675px;
+}
+
+.key {
+    border: 1px solid black;
+    border-right: none;
+    display: inline-block;
+    height: 200px;
+    width: 45px;
+}
+
+.key:last-of-type {
+    border-right: 1px solid black;
+}
+
+.key:hover {
+    cursor: pointer;
+}
+
+.key-black {
+    background-color: black;
+    height: 130px;
+    width: 25px;
+    position: absolute;
+    left: 32px;
+    z-index: 1;
+}
+
+.key-black-mouseover {
+    background-color: #565656;
+}
+
+.key-depressed {
+    box-shadow: 0 0 10px black inset;
+}
+
+.key-white-mouseover {
+    background-color: #dedddd;
+}
+
+.with-black {
+    position: relative;
+}
+
+#messageDiv {
+    font-size: 15px;
+}
+
