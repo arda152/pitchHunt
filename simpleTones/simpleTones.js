@@ -1,3 +1,6 @@
+//simpleTones by Elliott Alexander
+//https://github.com/escottalexander/simpleTones.js
+
 //Create Audio Context
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var context = new AudioContext();

@@ -42,9 +42,9 @@ div {
     width: 25px;
     left: 32px;
     z-index: 1;
+    display: block;
     /* black keys inherit inline-block from .key, but
     this throws the keyboard layout away */
-    display: block;
     position: relative;
 }
 
