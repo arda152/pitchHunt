@@ -141,10 +141,6 @@ newGameButton.addEventListener("click", function(e) {
 });
 
 playToneButton.addEventListener("click", function() {
-    // If the game was just won, clear the messageDiv
-    //if (messageDiv.textContent = "Correct!") {
-    //    messageDiv.textContent = "";
-    //}
     // Play the target tone
     playTone(toneName);
 });
