@@ -2,19 +2,50 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pitchHunt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <link rel="stylesheet" href="styles.css">
     <script defer src="simpleTones/simpleTones.js"></script>
     <script defer src="javascript.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 </head>
 
 <body>
+    <div class="modal" id="tooSmallMessageModal">
+        <div class="modal-background">
+        </div>
+        <div class="model-content">
+            <div class="notification is-primary">
+                <p class="has-text-centered is-size-3">
+                    Window is too small, please resize. <br /> pitchHunt is a desktop application.
+                </p>
+            </div>
+        </div>
+    </div>
     <div id="keyboard">
     </div>
-
-    <button id="newGame">New Game</button>
-    <button id="playTone">Play Tone</button>
-    <div id="messageDiv" class="message"></div>
-    <div id="tooSmallMessageDiv" class="message"></div>
+    <div class="level">
+        <div class="level-item">
+            <button class="button is-outlined is-success" id="newGame">New Game</button>
+            <button class="button is-outlined is-link" id="playTone">Play Tone</button>
+        </div>
+    </div>
+    <div class="level">
+        <div class="level-item">
+            <div id="messageDiv" class="is-size-5">
+                <p class="title has-text-centered is-2">
+                    pitchHunt!
+                </p>
+                <p class="has-text-centered subtitle is-4">
+                    Let's find the hidden note
+                </p>
+                <p class="has-text-centered">Make sure your <span class="has-text-weight-semibold">volume is up</span><br /> Try guessing the tone by pressing the keys<br /> Press "Play Tone" to begin!
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
