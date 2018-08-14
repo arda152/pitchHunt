@@ -60,6 +60,10 @@
     margin: 15px;
 }
 
+.hide {
+    display: none;
+}
+
 .title {
     padding-bottom: 40px;
 }

@@ -73,6 +73,8 @@ for (var i = 0; i < keys.length; i++) {
         // Set message
         if (toneName === e.target.getAttribute("id")) {
             messageDiv.textContent = "Correct!";
+            // Show new game button
+            toggleButtons();
         } else {
             messageDiv.textContent = "Wrong key...";
 
@@ -126,12 +128,13 @@ var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(
 // Check size
 checkIfSmall();
 
-newGameButton.addEventListener("click", function() {
-    newGameButton.textContent = "New Game";
+newGameButton.addEventListener("click", function(e) {
+    // Clear message, pick a new random note
     messageDiv.textContent = "";
     var newToneNumber = Math.floor(Math.random() * 24) + 1;
     toneName = toneNamesArray[newToneNumber];
-
+    // Show play note buttons
+    toggleButtons();
 });
 
 playToneButton.addEventListener("click", function() {
@@ -146,6 +149,12 @@ function checkIfSmall() {
     } else {
         tooSmallMessageModal.classList.remove("is-active");
     }
+}
+
+// Hide the shown button, show the hidden button
+function toggleButtons() {
+    newGameButton.classList.toggle("hide");
+    playToneButton.classList.toggle("hide");
 }
 
 window.addEventListener("resize", checkIfSmall);
