@@ -55,6 +55,7 @@ var newGameButton = document.getElementById("newGame");
 var playToneButton = document.getElementById("playTone");
 var messageDiv = document.getElementById("messageDiv");
 var tooSmallMessageModal = document.getElementById("tooSmallMessageModal");
+var userAcceptedSmallScreen = document.getElementById("userAcceptedSmallScreen");
 
 // Pick a random tone to begin the game
 // This line might get removed, if "Start Game" button is added
@@ -68,7 +69,7 @@ for (var i = 0; i < keys.length; i++) {
         e.target.classList.add("key-depressed");
 
         // Generate tone with the array
-        playTone(tone[e.target.getAttribute("id")]);
+        playTone(e.target.id, "sine", 2.0);
 
         // Set message
         if (toneName === e.target.getAttribute("id")) {
@@ -125,34 +126,31 @@ for (var i = 0; i < blackKeys.length; i++) {
         e.stopPropagation();
     });
 }
-// Device detection blocks mobile devices
-var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
 
-// Check size
-checkIfSmall();
+// Device detection displays warning mobile devices
+if (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase())) {
+    tooSmallMessageModal.classList.add("is-active");
+}
+
+// Warning disappears when user clicks button
+userAcceptedSmallScreen.addEventListener("click", function() {
+    tooSmallMessageModal.classList.remove("is-active");
+})
 
 newGameButton.addEventListener("click", function(e) {
     // Clear message, pick a new random note
     messageDiv.textContent = "";
     var newToneNumber = Math.floor(Math.random() * 24) + 1;
     toneName = toneNamesArray[newToneNumber];
+    playTone(toneName, "sine", 2.0);
     // Show play note buttons
     toggleButtons();
 });
 
 playToneButton.addEventListener("click", function() {
     // Play the target tone
-    playTone(toneName);
+    playTone(toneName, "sine", 2.0);
 });
-
-//Check if keyboard is in display, alert if window is too small
-function checkIfSmall() {
-    if (innerWidth < 730 || mobile) {
-        tooSmallMessageModal.classList.add("is-active");
-    } else {
-        tooSmallMessageModal.classList.remove("is-active");
-    }
-}
 
 // Hide the shown button, show the hidden button
 function toggleButtons() {
