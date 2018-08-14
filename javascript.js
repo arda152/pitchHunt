@@ -73,9 +73,12 @@ for (var i = 0; i < keys.length; i++) {
         // Set message
         if (toneName === e.target.getAttribute("id")) {
             messageDiv.textContent = "Correct!";
-            // Show new game button
-            toggleButtons();
-        } else {
+            // Show new game button if not already shown
+            if (newGameButton.classList.contains("hide")) {
+                toggleButtons();
+            }
+        } else if (messageDiv.textContent != "Correct!") {
+            // if game isn't over, keep telling false keys
             messageDiv.textContent = "Wrong key...";
 
             // If wrong key is selected, add a clue
@@ -138,6 +141,10 @@ newGameButton.addEventListener("click", function(e) {
 });
 
 playToneButton.addEventListener("click", function() {
+    // If the game was just won, clear the messageDiv
+    //if (messageDiv.textContent = "Correct!") {
+    //    messageDiv.textContent = "";
+    //}
     // Play the target tone
     playTone(toneName);
 });
