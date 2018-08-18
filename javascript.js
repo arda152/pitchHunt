@@ -158,4 +158,3 @@ function toggleButtons() {
     playToneButton.classList.toggle("hide");
 }
 
-window.addEventListener("resize", checkIfSmall);
