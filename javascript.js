@@ -1,4 +1,7 @@
-// Array of chromatic keys, black keys are always sharps, C4 to C6
+// Object to track state of the application
+var gameState = {
+    gameWon: false
+} // Array of chromatic keys, black keys are always sharps, C4 to C6
 var toneNamesArray = [
     "C4",
     "C#4",
@@ -74,11 +77,13 @@ for (var i = 0; i < keys.length; i++) {
         // Set message
         if (toneName === e.target.getAttribute("id")) {
             messageDiv.textContent = "Correct!";
+            // Set state to tell the app the game is over
+            gameState.gameWon = true;
             // Show new game button if not already shown
             if (newGameButton.classList.contains("hide")) {
                 toggleButtons();
             }
-        } else if (messageDiv.textContent != "Correct!") {
+        } else if (!gameState.gameWon) {
             // if game isn't over, keep telling false keys
             messageDiv.textContent = "Wrong key...";
 
@@ -90,7 +95,7 @@ for (var i = 0; i < keys.length; i++) {
             }
         }
 
-        // Stop white keys from playing a note when black keys are pressed
+        // Stop white keys from firing the listener when black keys are pressed
         e.stopPropagation();
     });
 
@@ -100,28 +105,16 @@ for (var i = 0; i < keys.length; i++) {
     })
 }
 
-// Following 20 lines paint keys gray when mouseover
-for (var i = 0; i < whiteKeys.length; i++) {
-    whiteKeys[i].addEventListener("mouseover", function(e) {
-        e.target.classList.add("key-white-mouseover");
+// Following loop paints keys gray when mouseover
+// CSS :hover doesn't work because of overlapping elements
+for (var key of keys) {
+    key.addEventListener("mouseover", function(e) {
+        e.target.classList.add("mouseover");
         e.stopPropagation();
     });
-    whiteKeys[i].addEventListener("mouseout", function(e) {
-        e.target.classList.remove("key-white-mouseover");
-
+    key.addEventListener("mouseout", function(e) {
+        e.target.classList.remove("mouseover");
         // When a key is clicked and dragged away, key was stuck depressed
-        e.target.classList.remove("key-depressed");
-        e.stopPropagation();
-    });
-}
-
-for (var i = 0; i < blackKeys.length; i++) {
-    blackKeys[i].addEventListener("mouseover", function(e) {
-        e.target.classList.add("key-black-mouseover");
-        e.stopPropagation();
-    });
-    blackKeys[i].addEventListener("mouseout", function(e) {
-        e.target.classList.remove("key-black-mouseover");
         e.target.classList.remove("key-depressed");
         e.stopPropagation();
     });
@@ -143,6 +136,8 @@ newGameButton.addEventListener("click", function(e) {
     var newToneNumber = Math.floor(Math.random() * 24) + 1;
     toneName = toneNamesArray[newToneNumber];
     playTone(toneName, "sine", 2.0);
+    // Clear gameWon state
+    gameState.gameWon = false;
     // Show play note buttons
     toggleButtons();
 });
@@ -157,4 +152,3 @@ function toggleButtons() {
     newGameButton.classList.toggle("hide");
     playToneButton.classList.toggle("hide");
 }
-
