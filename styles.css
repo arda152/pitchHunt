@@ -60,6 +60,11 @@
     margin: 15px;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+}
+
 .hide {
     display: none;
 }
