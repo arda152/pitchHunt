@@ -43,17 +43,18 @@
     box-shadow: 0 -5px 15px #4d4d4d inset;
 }
 
-.key-white-mouseover {
+.key-black.mouseover {
+    background-color: #565656;
+}
+
+.key-depressed {
+    box-shadow: 0 -5px 15px #4d4d4d inset;
+}
+
+.key-white.mouseover {
     background-color: #dedddd;
 }
 
-.key-white:first-of-type {
-    border-bottom-left-radius: 5px;
-}
-
-.key-white:last-of-type {
-    border-bottom-right-radius: 5px;
-}
 
 /* Buttons and Messages*/
 .button {
