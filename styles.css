@@ -11,8 +11,12 @@
     width: 45px;
 }
 
+.key:first-of-type {
+    border-bottom-left-radius: 5px;
+}
 .key:last-of-type {
     border-right: 1px solid black;
+    border-bottom-right-radius: 5px;
 }
 
 .key:hover {
